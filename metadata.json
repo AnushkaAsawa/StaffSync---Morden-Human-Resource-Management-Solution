@@ -1,0 +1,6 @@
+{
+  "name": "StaffSync - Modern Human Resource Management Solution",
+  "description": "Enterprise-grade Human Resource Management System with role-based workflows for HR, Managers, and Employees, IST attendance tracking, and INR payroll management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
