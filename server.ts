@@ -765,12 +765,20 @@ const startServer = async () => {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`=======================================================`);
-    console.log(`🚀 StaffSync HRM Full-Stack App running on port ${PORT}`);
-    console.log(`🌐 URL: http://localhost:${PORT}`);
-    console.log(`📦 MongoDB Status: ${mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected / Standby'}`);
-    console.log(`=======================================================`);
+  app.listen(PORT, '0.0.0.0', async () => {
+    console.log('=======================================================');
+    console.log(`StaffSync HRM Full-Stack App running on port ${PORT}`);
+    console.log(`URL: http://localhost:${PORT}`);
+
+    if (process.env.MONGO_URI) {
+      console.log('Connecting to MongoDB Atlas...');
+      const connected = await initDatabaseConnection(process.env.MONGO_URI);
+      console.log(`MongoDB Status: ${connected ? 'Connected' : 'Disconnected'}`);
+    }else {
+      console.log('MongoDB Status: MONGO_URI is missing from .env');
+    }
+
+    console.log('=======================================================');
   });
 };
 
